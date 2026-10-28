@@ -3,79 +3,162 @@
   --color-bg: #EDEBDE;
   --color-text: #1B1716;
   --color-accent: #810100;
+  --color-accent-soft: rgb(129 1 0 / 0.35);
+  --color-pill: rgb(27 23 22 / 0.08);
+
+  --font-display: "Bebas Neue", Impact, sans-serif;
+  --font-body: "Jost", system-ui, sans-serif;
+
+  --line-inset: 1rem;
 }
 
 
 html {
   background-color: var(--color-bg);
-  font-family: sans-serif;
+  color: var(--color-text);
+  font-family: var(--font-body);
 }
 
 body {
-  margin: 0 auto;
+  margin: 0;
   width: 100%;
-  max-width: 80ch;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   line-height: 1.5;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 * {
   box-sizing: border-box;
 }
 
-h1 {
-  margin: 1rem 0;
-  font-size: 2.5rem;
-}
-/* nav styles */
-.menu {
-  background-color: var(--color-accent);
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 5px 10px;
+/* header styles */
+header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
-.nav-links {
-  width: 100%;
-  display: none;
-  margin: 0;
-}
-
-.nav-links a {
-  display: block;
-  text-align: center;
-  padding: 10px 0;
+.logo {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  line-height: 1;
+  letter-spacing: 0.05em;
   text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
   text-transform: uppercase;
   color: var(--color-text);
 }
 
+header nav {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* nav styles */
+.menu {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0;
+  cursor: pointer;
+  /* stays above the drawer so it can close it */
+  position: relative;
+  z-index: 20;
+}
+
+/* phone: drawer that slides in from the right, over the page */
+.nav-links {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  width: min(75vw, 20rem);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 4.5rem 2rem 2rem;
+  background-color: var(--color-bg);
+  border-left: 1px solid var(--color-accent-soft);
+  box-shadow: -1rem 0 2rem rgb(27 23 22 / 0.08);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.35s ease, visibility 0.35s;
+}
+
+.nav-links a {
+  display: block;
+  text-align: right;
+  padding: 8px 0;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.nav-links a[aria-current="page"],
 .nav-links a:hover,
-.nav-links a:focus{
-  background-color: var(--color-accent);
-  color: var(--color-bg);
+.nav-links a:focus {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  color: var(--color-accent);
 }
 
 :has(.menu[aria-expanded="true"]) .nav-links {
-  display: unset;
+  transform: translateX(0);
+  visibility: visible;
 }
 
 @media screen and (min-width: 636px) {
+  :root {
+    --line-inset: 2.5rem;
+  }
+
+  body {
+    padding: 1.5rem 2rem;
+  }
+
+  header nav {
+    justify-content: center;
+  }
+
   .nav-links {
-    margin-left: 5em;
-    display: block;
     position: static;
+    flex-direction: row;
+    justify-content: center;
+    gap: clamp(1.5rem, 6vw, 5rem);
     width: auto;
+    height: auto;
+    padding: 0;
     background: none;
+    border: none;
+    box-shadow: none;
+    transform: none;
+    visibility: visible;
+    transition: none;
   }
 
   .nav-links a {
     display: inline-block;
-    padding: 15px 20px;
+    padding: 0;
+    font-size: 1.3rem;
   }
 
   .menu {
