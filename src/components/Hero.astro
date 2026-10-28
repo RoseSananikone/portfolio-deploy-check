@@ -1,0 +1,142 @@
+---
+
+---
+
+  <section class="hero">
+    <h1 class="hero-title">
+      <span class="line" data-text="Rose"><span class="sharp">Rose</span></span>
+      <span class="line" data-text="Sananikone"><span class="sharp">Sananikone</span></span>
+    </h1>
+
+    <div class="hero-text">
+      <p class="hero-tagline">A creative designer searching for more</p>
+      <p class="hero-intro">
+        Placeholder: a sentence or two about who you are, what you make and
+        what you're looking for next.
+      </p>
+      <p class="hero-note">Placeholder: location · open to work</p>
+    </div>
+
+    <a class="hero-button" href="/work/">View work</a>
+  </section>
+
+<style>
+  .hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .hero-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(4rem, 21vw, 9rem);
+    line-height: 0.85;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  /* each word is its own line on phone */
+  .line {
+    position: relative;
+    display: block;
+  }
+
+  /* hide the sharp letters where the blur band sits */
+  .sharp {
+    display: block;
+    mask-image: linear-gradient(to bottom, #000 42%, transparent 42%, transparent 68%, #000 68%);
+  }
+
+  /* blurred copy of the word, clipped to a horizontal band */
+  .line::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    color: rgb(27 23 22 / 0.8);
+    filter: blur(3px);
+    clip-path: inset(42% -1rem 32% -1rem);
+    pointer-events: none;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-text p {
+    margin: 0;
+  }
+
+  .hero-tagline {
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.15rem, 4.5vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .hero-intro {
+    max-width: 45ch;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .hero-note {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+  }
+
+  /* soft pill with a smudged double behind it */
+  .hero-button {
+    position: relative;
+    isolation: isolate;
+    padding: 0.9rem 2.5rem;
+    border-radius: 999px;
+    background-color: var(--color-pill);
+    color: var(--color-text);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .hero-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: var(--color-pill);
+    filter: blur(6px);
+    transform: translate(0.75rem, -0.25rem);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .hero-button:hover::before,
+  .hero-button:focus-visible::before {
+    transform: none;
+    filter: blur(0);
+  }
+
+  @media screen and (min-width: 636px) {
+    .hero-title {
+      font-size: min(14vw, 12rem);
+    }
+
+    /* one line on larger screens */
+    .line {
+      display: inline-block;
+    }
+
+    .hero-intro {
+      font-size: 1rem;
+    }
+  }
+</style>
