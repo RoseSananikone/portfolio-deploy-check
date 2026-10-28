@@ -1,37 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import placeholder from "../content/img/placeholder.jpg";
+import { getCollection } from "astro:content";
+import FeaturedCard from "./FeaturedCard.astro";
 
-// Swap in real projects here: one object per card.
-const projects = [
-  {
-    title: "Title of project",
-    category: "Branding",
-    year: "2026",
-    description: "Short description of the project: what it was about and what kind of project it is.",
-    image: placeholder,
-    alt: "Describe what the image shows",
-    href: "/work/",
-  },
-  {
-    title: "Title of project",
-    category: "Editorial",
-    year: "2025",
-    description: "Short description of the project: what it was about and what kind of project it is.",
-    image: placeholder,
-    alt: "Describe what the image shows",
-    href: "/work/",
-  },
-  {
-    title: "Title of project",
-    category: "Web design",
-    year: "2025",
-    description: "Short description of the project: what it was about and what kind of project it is.",
-    image: placeholder,
-    alt: "Describe what the image shows",
-    href: "/work/",
-  },
-];
+// Projects live in src/content/projects; set `featured: true` and `order` in each file.
+const projects = (await getCollection("projects", ({ data }) => data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
 ---
 
 <section class="featured" aria-labelledby="featured-heading">
@@ -42,28 +16,7 @@ const projects = [
   <ol class="project-list" role="list">
     {projects.map((project, index) => (
       <li>
-        <article class="project">
-          <div class="project-media">
-            <Image
-              src={project.image}
-              alt={project.alt}
-              widths={[400, 800, 1200]}
-              sizes="(min-width: 1000px) 33vw, (min-width: 636px) 50vw, 100vw"
-              loading={index === 0 ? "eager" : "lazy"}
-            />
-          </div>
-
-          <div class="project-meta">
-            <span class="project-number">{String(index + 1).padStart(2, "0")}</span>
-            <span class="project-tag">{project.category}</span>
-            <span class="project-year">{project.year}</span>
-          </div>
-
-          <h3 class="project-title">
-            <a href={project.href}>{project.title}</a>
-          </h3>
-          <p class="project-description">{project.description}</p>
-        </article>
+        <FeaturedCard project={project} index={index} />
       </li>
     ))}
   </ol>
@@ -94,20 +47,6 @@ const projects = [
     text-transform: uppercase;
   }
 
-  .featured-all {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    text-transform: uppercase;
-    color: var(--color-text);
-    text-underline-offset: 0.2em;
-    text-decoration-thickness: 1px;
-  }
-
-  .featured-all:hover,
-  .featured-all:focus-visible {
-    color: var(--color-accent);
-  }
-
   /* phone: one column */
   .project-list {
     display: grid;
@@ -115,107 +54,6 @@ const projects = [
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-
-  /* the whole card is clickable via the title link */
-  .project {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .project-title a::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-  }
-
-  .project-media {
-    overflow: hidden;
-    border-radius: 1rem;
-    aspect-ratio: 4 / 5;
-    background-color: var(--color-pill);
-  }
-
-  .project-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: filter 0.5s ease, transform 0.5s ease;
-  }
-
-  .project-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  .project-number {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    color: var(--color-accent);
-  }
-
-  .project-tag {
-    padding: 0.15rem 0.75rem;
-    border-radius: 999px;
-    background-color: var(--color-pill);
-    font-weight: 500;
-  }
-
-  .project-year {
-    margin-left: auto;
-  }
-
-  .project-title {
-    margin: 0;
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 1;
-    text-transform: uppercase;
-  }
-
-  .project-title a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .project-description {
-    margin: 0;
-    max-width: 40ch;
-    font-size: 0.9rem;
-  }
-
-  /* keyboard focus outline on the whole card */
-  .project:has(a:focus-visible) {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 0.5rem;
-    border-radius: 1rem;
-  }
-
-  .project-title a:focus-visible {
-    outline: none;
-  }
-
-  /* devices with a mouse: images start out of focus and sharpen on hover */
-  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    .project-media img {
-      filter: blur(4px) saturate(0.8);
-      transform: scale(1.05);
-    }
-
-    .project:hover .project-media img,
-    .project:has(a:focus-visible) .project-media img {
-      filter: none;
-      transform: scale(1);
-    }
-
-    .project:hover .project-title {
-      color: var(--color-accent);
-    }
   }
 
   @media screen and (min-width: 636px) {

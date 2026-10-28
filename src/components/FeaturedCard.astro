@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const { title, category, year, description, cover, coverAlt } = project.data;
+---
+
+<article class="project">
+  <a href={`/work/${project.id}/`} class="project-media">
+    <Image
+      src={cover}
+      alt={coverAlt}
+      widths={[400, 800, 1200]}
+      sizes="(min-width: 1000px) 33vw, (min-width: 636px) 50vw, 100vw"
+      loading={index === 0 ? "eager" : "lazy"}
+    />
+  </a>
+
+  <div class="project-meta">
+    <span class="project-number">{String(index + 1).padStart(2, "0")}</span>
+    <span class="project-tag">{category}</span>
+    <span class="project-year">{year}</span>
+  </div>
+
+  <div class="project-body">
+    <h3 class="project-title">{title}</h3>
+    <p class="project-description">{description}</p>
+  </div>
+
+  <a class="project-link" href={`/work/${project.id}/`}>
+  </a>
+</article>
