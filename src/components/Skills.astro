@@ -35,3 +35,100 @@ const categories = await getCollection("skills");
     ))}
   </div>
 </section>
+
+
+<style>
+  .skills-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid rgb(27 23 22 / 0.15);
+    border-radius: 1rem;
+  }
+
+  .skill-number {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--color-accent);
+  }
+
+
+  .skill-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .skill-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .skill-description {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+
+  .skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skill-label {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pill {
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    background-color: var(--color-pill);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pill-outline {
+    background: none;
+    border: 1px solid var(--color-accent-soft);
+  }
+
+  @media screen and (min-width: 636px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
