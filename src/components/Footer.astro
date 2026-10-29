@@ -3,16 +3,29 @@ import Navigation from '../components/Navigation.astro'
 import Social from '../components/Social.astro'
 ---
 
-<footer>
+<footer class="footer">
   <a class="logo" href="/">Rose<br />Sananikone</a>
   <Navigation />
-  <Social platform="linkedin" username="astrodotbuild" />
-  <Social platform="github" username="RoseSananikone" />
-  <Social platform="instagram" username="desire.monk" />
-  <Social platform="behance" username="rosesananikone" />
+  <div class="social-links">
+    <Social platform="linkedin" username="astrodotbuild" />
+    <Social platform="github" username="RoseSananikone" />
+    <Social platform="instagram" username="desire.monk" />
+    <Social platform="behance" username="rosesananikone" />
+  </div>
 </footer>
 
 
 <style>
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+  }
 
 </style>
