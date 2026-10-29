@@ -1,0 +1,11 @@
+---
+import { getCollection } from "astro:content";
+const skills = (await getCollection("skills")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section>
+  <h2>My skills</h2>
+  <ul>
+    {skills.map((skill) => <li>{skill.data.name}</li>)}
+  </ul>
+</section>

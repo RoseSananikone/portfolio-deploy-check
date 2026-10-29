@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import FeaturedCard from "./FeaturedCard.astro";
+
+// Projects live in src/content/projects; set `featured: true` and `order` in each file.
+const projects = (await getCollection("projects", ({ data }) => data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<section class="featured" aria-labelledby="featured-heading">
+  <header class="featured-header">
+    <h2 id="featured-heading">Featured projects</h2>
+  </header>
+
+  <ol class="project-list" role="list">
+    {projects.map((project, index) => (
+      <li>
+        <FeaturedCard project={project} index={index} />
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .featured {
+    padding: 4rem 0;
+  }
+
+  .featured-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 0.75rem;
+  }
+
+  .featured-header h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.75rem, 12vw, 6rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  /* phone: one column */
+  .project-list {
+    display: grid;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media screen and (min-width: 636px) {
+    .project-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 1.5rem;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .project-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* stagger the middle card for a more editorial feel */
+    .project-list li:nth-child(3n + 2) {
+      margin-top: 4rem;
+    }
+  }
+</style>

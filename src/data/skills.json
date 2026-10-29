@@ -1,0 +1,8 @@
+[
+  { "id": "figma", "name": "Figma", "type": "tool", "order": 1 },
+  { "id": "illustrator", "name": "Illustrator", "type": "tool", "order": 2 },
+  { "id": "javascript", "name": "JavaScript", "type": "language", "order": 3 },
+  { "id": "html-css", "name": "HTML & CSS", "type": "language", "order": 4 },
+  { "id": "branding", "name": "Branding", "type": "skill", "order": 5 },
+  { "id": "typography", "name": "Typography", "type": "skill", "order": 6 }
+]
