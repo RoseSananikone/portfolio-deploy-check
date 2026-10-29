@@ -1,2 +1,29 @@
 ---
+import { Image } from "astro:assets";
+import rose from "../content/img/rose.png";
+import Skills from '../components/Skills.astro'
 ---
+
+<section class="about">
+  <h2>A quick intro!</h2>
+  <p>I'm Rose Sananikone, a digital design and development student in the DEVINE program in Howest.</p>
+
+  <p>Get to know me</p>
+
+  <Image src={rose} alt="Image of a rose for now" />
+  <!-- Option 1: Professionally -->
+   <Skills />
+<h2>My fluent languages</h2>
+<ul>
+  <li>English</li>
+  <li>French</li>
+  <li>German</li>
+</ul>
+   <!-- Option 2: Personally -->
+  <!-- icons with my interests -->
+  <!-- Playing flute -->
+  <!-- Video games -->
+  <!-- Interest in motion graphics and creative technology -->
+  <!-- Love going out with friends and exploring new places -->
+
+</section>
