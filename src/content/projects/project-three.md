@@ -1,7 +1,7 @@
 ---
 title: Title of project
 category: Web design
-year: 2025
+year: 2026
 description: "Short description of the project: what it was about and what kind of project it is."
 cover: ../img/placeholder.jpg
 coverAlt: Describe what the image shows
