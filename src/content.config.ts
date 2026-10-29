@@ -20,9 +20,10 @@ const projects = defineCollection({
 const skills = defineCollection({
   loader: file("src/data/skills.json"),
   schema: z.object({
-    name: z.string(),
-    type: z.enum(["skill", "tool", "language"]),
-    order: z.number().default(0),
+    title: z.string(),
+    description: z.string(),
+    skills: z.array(z.string()).min(1),
+    tools: z.array(z.string()).default([]),
   }),
 });
 

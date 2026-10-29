@@ -1,11 +1,13 @@
 [
   {
+    "id": "experience-design",
     "title": "Experience Design",
     "description": "Crafting intuitive, user-centered digital interfaces and interactions.",
     "skills": ["UI/UX Design", "Wireframing", "Prototyping"],
     "tools": ["Figma"]
   },
   {
+    "id": "visual-design",
     "title": "Visual Design",
     "description": "Bringing brands and digital products to life with motion and aesthetics.",
     "skills": [
@@ -17,6 +19,7 @@
     "tools": ["Photoshop", "After Effects", "Procreate", "Figma"]
   },
   {
+    "id": "coding-development",
     "title": "Coding & Development",
     "description": "Building interactive web experiences and creative technical solutions.",
     "skills": ["Web Development", "Creative Coding", "Responsive Design"],
