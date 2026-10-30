@@ -1,8 +1,21 @@
 ---
+const path = Astro.url.pathname;
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
+  { href: "/work/", label: "Work" },
+  { href: "/contact/", label: "Contact" },
+];
+
+const isActive = (href:any) =>
+  href === "/" ? path === "/" : path.startsWith(href);
 ---
-<div id="main-menu" class="nav-links">
-<a href="/" aria-current="page">Home</a>
-<a href="/about/">About</a>
-<a href="/work/">Work</a>
-<a href="/contact/">Contact</a>
+<div id="main-menu" class="nav-links" popover>
+  <button class="menu-close" popovertarget="main-menu" popovertargetaction="hide">Close</button>
+  {links.map((link) => (
+    <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
+      {link.label}
+    </a>
+  ))}
 </div>

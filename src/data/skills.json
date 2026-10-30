@@ -1,8 +1,28 @@
 [
-  { "id": "figma", "name": "Figma", "type": "tool", "order": 1 },
-  { "id": "illustrator", "name": "Illustrator", "type": "tool", "order": 2 },
-  { "id": "javascript", "name": "JavaScript", "type": "language", "order": 3 },
-  { "id": "html-css", "name": "HTML & CSS", "type": "language", "order": 4 },
-  { "id": "branding", "name": "Branding", "type": "skill", "order": 5 },
-  { "id": "typography", "name": "Typography", "type": "skill", "order": 6 }
+  {
+    "id": "experience-design",
+    "title": "Experience Design",
+    "description": "Crafting intuitive, user-centered digital interfaces and interactions.",
+    "skills": ["UI/UX Design", "Wireframing", "Prototyping"],
+    "tools": ["Figma"]
+  },
+  {
+    "id": "visual-design",
+    "title": "Visual Design",
+    "description": "Bringing brands and digital products to life with motion and aesthetics.",
+    "skills": [
+      "Web Design",
+      "Branding",
+      "Motion Graphics",
+      "Sketching & Illustration"
+    ],
+    "tools": ["Photoshop", "After Effects", "Procreate", "Figma"]
+  },
+  {
+    "id": "coding-development",
+    "title": "Coding & Development",
+    "description": "Building interactive web experiences and creative technical solutions.",
+    "skills": ["Web Development", "Creative Coding", "Responsive Design"],
+    "tools": ["JavaScript", "HTML & CSS", "PHP"]
+  }
 ]

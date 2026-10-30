@@ -1,6 +1,6 @@
 :root {
-  --color-bg: #EDEBDE;
-  --color-text: #1B1716;
+  --color-bg: #edebde;
+  --color-text: #1b1716;
   --color-accent: #810100;
   --color-accent-soft: rgb(129 1 0 / 0.35);
   --color-pill: rgb(27 23 22 / 0.08);
@@ -11,7 +11,8 @@
   --line-inset: 1rem;
 }
 
-img,svg {
+img,
+svg {
   display: block;
   max-width: 100%;
   height: auto;
@@ -83,6 +84,10 @@ header nav {
 
 /* phone: drawer that slides in from the right, over the page */
 .nav-links {
+  inset: 0 0 auto auto; /* top right, instead of centered */
+  margin: 0;
+  border: none;
+  color: var(--color-text);
   position: fixed;
   top: 0;
   right: 0;
@@ -98,7 +103,10 @@ header nav {
   box-shadow: -1rem 0 2rem rgb(27 23 22 / 0.08);
   transform: translateX(100%);
   visibility: hidden;
-  transition: transform 0.35s ease, visibility 0.35s;
+  transition:
+    transform 0.35s ease,
+    visibility 0.35s,
+    overlay 0.35s allow-discrete;
 }
 
 .nav-links a {
@@ -121,7 +129,7 @@ header nav {
   color: var(--color-accent);
 }
 
-:has(.menu[aria-expanded="true"]) .nav-links {
+.nav-links:popover-open {
   transform: translateX(0);
   visibility: visible;
 }
@@ -161,7 +169,22 @@ header nav {
     font-size: 1.3rem;
   }
 
-  .menu {
-    display: none;
-  }
+.menu,
+.menu-close {
+  display: none;
+}
+}
+
+.menu-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: var(--color-text);
+  cursor: pointer;
 }

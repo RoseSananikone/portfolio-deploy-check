@@ -1,11 +1,36 @@
 ---
 import { getCollection } from "astro:content";
-const skills = (await getCollection("skills")).sort((a, b) => a.data.order - b.data.order);
+import SkillCard from "./SkillCard.astro"
+
+const categories = await getCollection("skills");
 ---
 
-<section>
+<section class="skills">
   <h2>My skills</h2>
-  <ul>
-    {skills.map((skill) => <li>{skill.data.name}</li>)}
-  </ul>
+
+  <div class="skills-grid">
+    {categories.map((category, index) => (
+      <SkillCard category={category} index={index} />
+    ))}
+  </div>
 </section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  @media screen and (min-width: 636px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
