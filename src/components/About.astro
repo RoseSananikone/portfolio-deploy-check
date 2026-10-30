@@ -11,7 +11,7 @@ import Skills from '../components/Skills.astro'
   </div>
   <article class="about-me">
     <div class="about-photo">
-      <Image class="about-media" src={rose} alt="Image of a rose for now" />
+<Image class="about-media" src={rose} width={960} loading="eager" alt="..." />
 
       <button class="float-button float-languages" popovertarget="languages-popup">Trilingual</button>
       <button class="float-button float-hobbies" popovertarget="hobbies-popup">Hobbies</button>
@@ -204,4 +204,6 @@ import Skills from '../components/Skills.astro'
   .popup-close:focus-visible {
     color: var(--color-accent);
   }
+
 </style>
+

@@ -11,7 +11,8 @@ const links = [
 const isActive = (href:any) =>
   href === "/" ? path === "/" : path.startsWith(href);
 ---
-<div id="main-menu" class="nav-links">
+<div id="main-menu" class="nav-links" popover>
+  <button class="menu-close" popovertarget="main-menu" popovertargetaction="hide">Close</button>
   {links.map((link) => (
     <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
       {link.label}
