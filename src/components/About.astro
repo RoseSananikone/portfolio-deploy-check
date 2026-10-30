@@ -2,6 +2,21 @@
 import { Image } from "astro:assets";
 import rose from "../content/img/rose.png";
 import Skills from '../components/Skills.astro'
+
+const popups = [
+  {
+    id: "languages",
+    title: "Trilingual",
+    items: ["English", "French", "German"],
+    text: "I have to switch language depending on who I am talking to pretty often and have experienced many different cultures from european, to middle eastern to asian cultures which all shape how I design for different people or ideas. Sharing experiences and exchanging different perspectives with people all over the world is my favourite. ",
+  },
+  {
+    id: "hobbies",
+    title: "Hobbies",
+    items: ["Playing flute", "Playing video games and board games", "Hosting friends", "Cooking and baking"],
+    text: "I usually try to combine my hobbies with my skills such as creating experiences people enjoy by inviting friends and curating the right foods, drinks and activities to do!",
+  },
+];
 ---
 
 <section class="about">
@@ -13,37 +28,27 @@ import Skills from '../components/Skills.astro'
     <div class="about-photo">
 <Image class="about-media" src={rose} width={960} loading="eager" alt="..." />
 
-      <button class="float-button float-languages" popovertarget="languages-popup">Trilingual</button>
-      <button class="float-button float-hobbies" popovertarget="hobbies-popup">Hobbies</button>
+{popups.map((popup) => (
+  <button class={`float-button float-${popup.id}`} popovertarget={`${popup.id}-popup`}>
+    {popup.title}
+  </button>
+))}
     </div>
     <p>I'm Rose Sananikone, a digital design and development student in the DEVINE program in Howest. I'm always eager and excited to explore more and push the limits of my skills to further develop them and combining them with my hobbies and other experiences.</p>
   </article>
 
     <Skills />
 
-
-  <div id="languages-popup" class="popup" popover>
-    <button class="popup-close" popovertarget="languages-popup" popovertargetaction="hide">Close</button>
-    <h2>Trilingual</h2>
+  {popups.map((popup) => (
+  <div id={`${popup.id}-popup`} class="popup" popover>
+    <button class="popup-close" popovertarget={`${popup.id}-popup`} popovertargetaction="hide">Close</button>
+    <h2>{popup.title}</h2>
     <ul>
-      <li>English</li>
-      <li>French</li>
-      <li>German</li>
+      {popup.items.map((item) => <li>{item}</li>)}
     </ul>
-    <p>I have to switch language depending on who I am talking to pretty often and have experienced many different cultures from european, to middle eastern to asian cultures which all shape how I design for different people or ideas. Sharing experiences and exchanging different perspectives with people all over the world is my favourtie. </p>
+    <p>{popup.text}</p>
   </div>
-
-    <div id="hobbies-popup" class="popup" popover>
-    <button class="popup-close" popovertarget="hobbies-popup" popovertargetaction="hide">Close</button>
-    <h2>Hobbies</h2>
-    <ul>
-      <li>Playing flute</li>
-      <li>Playing videogames and board games</li>
-      <li>Hosting friends</li>
-      <li>Cooking and baking</li>
-    </ul>
-    <p>I usually try to combine my hobbies with my skills such as creating experiences people enjoy by inviting friends and curating the right food and activities to do!</p>
-  </div>
+))}
 
 </section>
 
