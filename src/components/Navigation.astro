@@ -8,7 +8,7 @@ const links = [
   { href: "/contact/", label: "Contact" },
 ];
 
-const isActive = (href) =>
+const isActive = (href:any) =>
   href === "/" ? path === "/" : path.startsWith(href);
 ---
 <div id="main-menu" class="nav-links">

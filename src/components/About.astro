@@ -5,20 +5,43 @@ import Skills from '../components/Skills.astro'
 ---
 
 <section class="about">
-  <h2>A quick intro!</h2>
-  <p>I'm Rose Sananikone, a digital design and development student in the DEVINE program in Howest.</p>
+  <div class="intro-text">
+    <h2 class="intro-title">A Quick Intro!</h2>
+    <p class="intro-subtitle">Get to know me and my skills :)</p>
+  </div>
+  <article class="about-me">
+    <div class="about-photo">
+      <Image class="about-media" src={rose} alt="Image of a rose for now" />
 
-  <p>Get to know me</p>
+      <button class="float-button float-languages" popovertarget="languages-popup">Trilingual</button>
+      <button class="float-button float-hobbies" popovertarget="hobbies-popup">Hobbies</button>
+    </div>
+    <p>I'm Rose Sananikone, a digital design and development student in the DEVINE program in Howest.</p>
+  </article>
 
-  <Image src={rose} alt="Image of a rose for now" />
-  <!-- Option 1: Professionally -->
-   <Skills />
-<h2>My fluent languages</h2>
-<ul>
-  <li>English</li>
-  <li>French</li>
-  <li>German</li>
-</ul>
+    <Skills />
+
+
+  <div id="languages-popup" class="popup" popover>
+    <button class="popup-close" popovertarget="languages-popup" popovertargetaction="hide">Close</button>
+    <h2>Trilingual</h2>
+    <ul>
+      <li>English</li>
+      <li>French</li>
+      <li>German</li>
+    </ul>
+  </div>
+
+    <div id="hobbies-popup" class="popup" popover>
+    <button class="popup-close" popovertarget="hobbies-popup" popovertargetaction="hide">Close</button>
+    <h2>Hobbies</h2>
+    <ul>
+      <li>Playing flute</li>
+      <li>Playing videogames</li>
+      <li>Hosting friends</li>
+      <li>Cooking</li>
+    </ul>
+  </div>
 
 
    <!-- Option 2: Personally -->
@@ -29,3 +52,162 @@ import Skills from '../components/Skills.astro'
   <!-- Love going out with friends and exploring new places -->
 
 </section>
+
+<style>
+
+  .intro-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+
+  h2 {
+  margin-bottom: 0;
+  }
+
+  .intro-subtitle {
+    margin-top: 0;
+  }
+
+ .about-me {
+  display: grid;
+  align-items: center;
+  padding: 2rem;
+ }
+
+  /* the buttons are positioned relative to this wrapper */
+  .about-photo {
+    position: relative;
+    width: min(100%, 40rem);
+    flex-shrink: 0;
+  }
+
+ .about-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+ }
+
+  /* no border, just a shadow so they look like they float above the photo */
+  .float-button {
+    position: absolute;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-bg);
+    box-shadow: 0 0.75rem 2rem rgb(27 23 22 / 0.18);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: color 0.3s ease, scale 0.3s ease;
+  }
+
+  .float-button:hover,
+  .float-button:focus-visible {
+    color: var(--color-accent);
+    scale: 1.05;
+  }
+
+    .float-hobbies {
+    top: 70%;
+    left: 1rem;
+  }
+
+  .float-languages {
+    bottom: 12%;
+    right: 1rem;
+  }
+
+  /* slow floating */
+  @media (prefers-reduced-motion: no-preference) {
+    .float-button {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .float-languages {
+      animation-delay: -2s;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -0.5rem; }
+  }
+
+
+  /* card that slides up from below when it opens */
+  .popup {
+    width: min(90vw, 60rem);
+    max-height: 85dvh;
+    overflow-y: auto;
+    padding: 2rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: 0 1.5rem 4rem rgb(27 23 22 / 0.25);
+    opacity: 0;
+    transform: translateY(3rem);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease,
+      overlay 0.4s allow-discrete,
+      display 0.4s allow-discrete;
+  }
+
+  .popup:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* where the card starts from when it opens */
+  @starting-style {
+    .popup:popover-open {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+  }
+
+  .popup::backdrop {
+    background-color: rgb(27 23 22 / 0);
+    transition:
+      background-color 0.4s ease,
+      overlay 0.4s allow-discrete,
+      display 0.4s allow-discrete;
+  }
+
+  .popup:popover-open::backdrop {
+    background-color: rgb(27 23 22 / 0.5);
+  }
+
+  @starting-style {
+    .popup:popover-open::backdrop {
+      background-color: rgb(27 23 22 / 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .popup,
+    .popup:popover-open {
+      transform: none;
+    }
+  }
+
+  .popup-close {
+    float: right;
+    background: none;
+    border: none;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .popup-close:hover,
+  .popup-close:focus-visible {
+    color: var(--color-accent);
+  }
+</style>
