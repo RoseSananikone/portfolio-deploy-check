@@ -1,0 +1,40 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  tag?: string;
+  year?: number;
+  backHref: string;
+  backLabel: string;
+}
+
+const { title, tag, year, backHref, backLabel } = Astro.props;
+---
+
+<BaseLayout pageTitle={title}>
+  <article class="article">
+    <a class="back-link" href={backHref}>← {backLabel}</a>
+
+    <header class="article-header">
+      <h1 class="article-title">{title}</h1>
+
+    <div class="article-meta">
+  <span class="article-tag">{tag}</span>
+   <span class="article-year">{year}</span>
+</div>
+    </header>
+
+
+<div class="article-media">
+  <slot name="media" />
+</div>
+
+    <div class="details">
+      <slot />
+    </div>
+
+    <a class="back-link" href={backHref}>← {backLabel}</a>
+  </article>
+</BaseLayout>
+
