@@ -5,7 +5,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
-  return projects.map((project) => ({
+  return projects.map((project:any) => ({
     params: { id: project.id },
     props: { project },
   }));
@@ -22,5 +22,29 @@ const { Content } = await render(project);
     <p>{category} · {year}</p>
     <Image src={cover} alt={coverAlt} widths={[800, 1600]} sizes="100vw" loading="eager" />
     <Content />
+
+    <a class="back-link" href="/work/">← Back to all projects</a>
   </article>
 </BaseLayout>
+
+
+<style>
+  .back-link {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-block: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color 0.3s ease, gap 0.3s ease;
+  }
+
+  .back-link:hover,
+  .back-link:focus-visible {
+    gap: 0.85rem;
+    color: var(--color-accent);
+  }
+</style>
