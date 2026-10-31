@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import WorkCard from "./WorkCard.astro";
+
+const projects = (await getCollection("projects"))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="work" aria-labelledby="work-heading">
+  <header class="work-header">
+    <h2 id="work-heading">Work projects</h2>
+  </header>
+
+  <ul class="project-list" role="list">
+    {projects.map((project, index) => (
+      <li>
+        <WorkCard project={project} index={index} />
+      </li>
+    ))}
+  </ul>
+</section>
