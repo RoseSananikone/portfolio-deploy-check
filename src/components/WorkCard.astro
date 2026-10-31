@@ -1,0 +1,160 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const { title, category, year, description, cover, coverAlt } = project.data;
+---
+
+<article class="project">
+  <a href={`/work/${project.id}/`} class="project-media">
+    <Image
+      src={cover}
+      alt={coverAlt}
+      widths={[400, 800, 1200]}
+      sizes="(min-width: 1000px) 33vw, (min-width: 636px) 50vw, 100vw"
+      loading={index === 0 ? "eager" : "lazy"}
+    />
+  </a>
+
+  <div class="project-meta">
+    <span class="project-number">{String(index + 1).padStart(2, "0")}</span>
+    <span class="project-tag">{category}</span>
+    <span class="project-year">{year}</span>
+  </div>
+
+  <div class="project-body">
+    <h3 class="project-title">{title}</h3>
+    <p class="project-description">{description}</p>
+  </div>
+
+  <a class="project-link" href={`/work/${project.id}/`}>
+  </a>
+</article>
+
+
+
+<style>
+  /* spacing between the image, meta row, text and link */
+  .project {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .project-media {
+    overflow: hidden;
+    border-radius: 1rem;
+    aspect-ratio: 5 / 3;
+    background-color: var(--color-pill);
+  }
+
+  .project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease, transform 0.5s ease;
+  }
+
+  /* number left, year right, category in between, with a hairline above */
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgb(27 23 22 / 0.15);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .project-number {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: 0;
+    color: var(--color-accent);
+  }
+
+  .project-tag {
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    background-color: var(--color-pill);
+    font-weight: 500;
+  }
+
+  .project-year {
+    margin-left: auto;
+    opacity: 0.6;
+  }
+
+  /* title and description sit tight together */
+  .project-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .project-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .project-description {
+    margin: 0;
+    max-width: 40ch;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+
+  .project-link {
+    align-self: flex-start;
+    display: inline-flex;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color 0.3s ease, gap 0.3s ease;
+  }
+
+  .project-link:hover,
+  .project-link:focus-visible {
+    gap: 0.85rem;
+    color: var(--color-accent);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* devices with a mouse: images start out of focus and sharpen on hover */
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .project-media img {
+      filter: blur(4px) saturate(0.8);
+      transform: scale(1.05);
+    }
+
+    .project:hover .project-media img,
+    .project:focus-within .project-media img {
+      filter: none;
+      transform: scale(1);
+    }
+  }
+</style>

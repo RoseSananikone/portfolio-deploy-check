@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
+import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
+
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project:any) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { title, category, year, cover, coverAlt } = project.data;
+const { Content } = await render(project);
+---
+
+<MarkdownLayout title={title} tag={category} year={year} backHref="/work/" backLabel="All projects">
+  <Image
+    slot="media"
+    src={cover}
+    alt={coverAlt}
+    widths={[400, 800, 1600]}
+    sizes="(min-width: 48rem) 48rem, 100vw"
+    loading="eager"
+  />
+  <Content />
+</MarkdownLayout>
