@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import  BlogCard  from "./BlogCard.astro";
+
+const blogPosts = (await getCollection("blogPosts"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+
+<section class="blog" aria-labelledby="blog-heading">
+  <header class="blog-header">
+    <h2 id="blog-heading">My blog</h2>
+  </header>
+
+  <ul class="blog-list" role="list">
+    {blogPosts.map((post, index) => (
+      <li>
+
+        <BlogCard blogPost={post} number={blogPosts.length - index} />
+
+      </li>
+    ))}
+  </ul>
+</section>
+
+
+<style>
+  .blog {
+    padding: 4rem 0;
+  }
+
+  .blog-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 0.75rem;
+  }
+
+  .blog-header h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.75rem, 12vw, 6rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  /* phone: one column */
+  .blog-list {
+    display: grid;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media screen and (min-width: 636px) {
+    .blog-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 1.5rem;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .blog-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* stagger the middle card for a more editorial feel */
+    .blog-list li:nth-child(3n + 2) {
+      margin-top: 4rem;
+    }
+  }
+</style>

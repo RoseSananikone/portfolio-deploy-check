@@ -1,0 +1,114 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  blogPost: CollectionEntry<"blogPosts">;
+  number: number;
+}
+
+const { blogPost, number } = Astro.props;
+const { title, category, date, description} = blogPost.data;
+---
+
+<a class="blogPost" href={`/blog/${blogPost.id}/`}>
+  <div class="blogPost-meta">
+    <span class="blogPost-number">{String(number).padStart(2, "0")}</span>
+    <span class="blogPost-tag">{category}</span>
+    <span class="blogPost-year">{date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
+  </div>
+
+  <div class="blogPost-body">
+    <h3 class="blogPost-title">{title}</h3>
+    <p class="blogPost-description">{description}</p>
+  </div>
+
+  <span class="blogPost-link">Read full blog →</span>
+</a>
+
+<style>
+  .blogPost {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid rgb(27 23 22 / 0.15);
+    border-radius: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 0.3s ease, translate 0.3s ease;
+  }
+
+  .blogPost:hover,
+  .blogPost:focus-visible {
+    border-color: var(--color-accent);
+    translate: 0 -0.25rem;
+  }
+
+  .blogPost-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgb(27 23 22 / 0.15);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .blogPost-number {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: 0;
+    color: var(--color-accent);
+  }
+
+  .blogPost-tag {
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    background-color: var(--color-pill);
+    font-weight: 500;
+  }
+
+  .blogPost-year {
+    margin-left: auto;
+    opacity: 0.6;
+  }
+
+  .blogPost-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .blogPost-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .blogPost-description {
+    margin: 0;
+    max-width: 40ch;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+
+  .blogPost-link {
+    display: inline-flex;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+
+  .blogPost:hover .blogPost-link,
+  .blogPost:focus-visible .blogPost-link {
+    color: var(--color-accent);
+  }
+</style>

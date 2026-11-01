@@ -17,6 +17,17 @@ const projects = defineCollection({
     }),
 });
 
+const blogPosts = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/posts" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      category: z.string(),
+      date: z.coerce.date(),
+      description: z.string(),
+    }),
+});
+
 const skills = defineCollection({
   loader: file("src/data/skills.json"),
   schema: z.object({
@@ -27,4 +38,4 @@ const skills = defineCollection({
   }),
 });
 
-export const collections = { projects, skills };
+export const collections = { projects, skills, blogPosts };

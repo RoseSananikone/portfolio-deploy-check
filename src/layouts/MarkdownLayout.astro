@@ -5,11 +5,12 @@ interface Props {
   title: string;
   tag?: string;
   year?: number;
+  date?: Date;
   backHref: string;
   backLabel: string;
 }
 
-const { title, tag, year, backHref, backLabel } = Astro.props;
+const { title, tag, year, date, backHref, backLabel } = Astro.props;
 ---
 
 <BaseLayout pageTitle={title}>
@@ -22,14 +23,16 @@ const { title, tag, year, backHref, backLabel } = Astro.props;
     <div class="article-meta">
   <span class="article-tag">{tag}</span>
    <span class="article-year">{year}</span>
+   <span class="article-date">{date?.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
 </div>
     </header>
 
 
-<div class="article-media">
-  <slot name="media" />
-</div>
-
+{Astro.slots.has("media") && (
+  <div class="article-media">
+    <slot name="media" />
+  </div>
+)}
     <div class="details">
       <slot />
     </div>
@@ -39,6 +42,10 @@ const { title, tag, year, backHref, backLabel } = Astro.props;
 </BaseLayout>
 
 <style>
+  p {
+    margin-top: 0;
+  }
+
   .article {
     display: flex;
     flex-direction: column;
@@ -91,5 +98,15 @@ const { title, tag, year, backHref, backLabel } = Astro.props;
     overflow: hidden;
     border-radius: 1rem;
   }
+
+  .details :global(p) {
+  margin-top: 0.5;
+  margin-bottom: 1rem;
+}
+
+.details :global(:is(h2, h3, h4)) {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
 
 </style>

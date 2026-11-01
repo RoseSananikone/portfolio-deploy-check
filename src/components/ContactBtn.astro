@@ -1,0 +1,82 @@
+---
+const email = "rose16.sananikone@gmail.com";
+const phone = "+32 498 31 31 31";
+---
+
+<button class="contact-button" popovertarget="contact-popup">Contact me!</button>
+
+<div id="contact-popup" class="contact-popup" popover aria-labelledby="contact-heading">
+  <h2 id="contact-heading">Let's talk!</h2>
+  <p>Send me an email and I'll get back to you.</p>
+  <ul class="contact-list">
+    <li><a href={`mailto:${email}`}>{email}</a></li>
+    <li><a href={`tel:${phone.replaceAll(" ", "")}`}>{phone}</a></li>
+  </ul>
+</div>
+
+
+<style>
+
+    .contact-button {
+      position: relative;
+      isolation: isolate;
+      padding: 0.9rem 2.5rem;
+      border-radius: 999px;
+      background-color: var(--color-accent);
+      color: var(--color-bg);
+      font-weight: 500;
+      text-decoration: none;
+      border-style: none;
+      margin: 0 2rem 2rem 2rem;
+    }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .contact-popup {
+  border: none;
+  color: var(--color-text);
+  position: fixed;
+  z-index: 10;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-accent);
+  box-shadow: -1rem 0 2rem rgb(27 23 22 / 0.08);
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    transform 0.35s ease,
+    visibility 0.35s,
+    overlay 0.35s allow-discrete;
+}
+
+.contact-popup a {
+  display: block;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.contact-popup a[aria-current="page"],
+.contact-popup a:hover,
+.contact-popup a:focus {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  color: var(--color-accent);
+}
+
+.contact-popup:popover-open {
+  transform: translateY(50%);
+  visibility: visible;
+}
+
+</style>
