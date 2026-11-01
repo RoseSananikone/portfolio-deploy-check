@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  blogPost: CollectionEntry<"blogPosts">;
+  index: number;
+}
+
+const { blogPost, index } = Astro.props;
+const { title, category, date, description} = blogPost.data;
+---
+
+<article class="blogPost">
+  <a href={`/blog/${blogPost.id}/`} class="blogPost-media">
+
+  <div class="blogPost-meta">
+    <span class="blogPost-number">{String(index + 1).padStart(2, "0")}</span>
+    <span class="blogPost-tag">{category}</span>
+    <span class="blogPost-year">{date}</span>
+  </div>
+
+  <div class="blogPost-body">
+    <h3 class="blogPost-title">{title}</h3>
+    <p class="blogPost-description">{description}</p>
+  </div>
+  </a>
+
+  <a class="blogPost-link" href={`/blog/${blogPost.id}/`}>
+  </a>
+</article>

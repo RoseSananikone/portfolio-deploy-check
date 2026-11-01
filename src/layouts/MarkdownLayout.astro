@@ -5,11 +5,12 @@ interface Props {
   title: string;
   tag?: string;
   year?: number;
+  date?: string;
   backHref: string;
   backLabel: string;
 }
 
-const { title, tag, year, backHref, backLabel } = Astro.props;
+const { title, tag, year, date, backHref, backLabel } = Astro.props;
 ---
 
 <BaseLayout pageTitle={title}>
@@ -22,6 +23,7 @@ const { title, tag, year, backHref, backLabel } = Astro.props;
     <div class="article-meta">
   <span class="article-tag">{tag}</span>
    <span class="article-year">{year}</span>
+   <span class="article-date">{date}</span>
 </div>
     </header>
 
