@@ -1,0 +1,15 @@
+---
+const email = "rose16.sananikone@gmail.com";
+const phone = "+32 498 31 31 31";
+---
+
+<button class="contact-button" popovertarget="contact-popup">Contact me!</button>
+
+<div id="contact-popup" class="contact-popup" popover aria-labelledby="contact-heading">
+  <h2 id="contact-heading">Let's talk!</h2>
+  <p>Send me an email and I'll get back to you.</p>
+  <ul class="contact-list">
+    <li><a href={`mailto:${email}`}>{email}</a></li>
+    <li><a href={`tel:${phone.replaceAll(" ", "")}`}>{phone}</a></li>
+  </ul>
+</div>
