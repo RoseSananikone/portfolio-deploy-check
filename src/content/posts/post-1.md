@@ -1,8 +1,8 @@
 ---
 title: Getting Started
 category: Editorial
-date: 1/11/26
+date: 2026-11-01
 description: "A sentence here to describe it"
 ---
 
-Placeholder text
+

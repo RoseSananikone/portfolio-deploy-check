@@ -14,7 +14,7 @@ const { title, category, date, description} = blogPost.data;
   <div class="blogPost-meta">
     <span class="blogPost-number">{String(index + 1).padStart(2, "0")}</span>
     <span class="blogPost-tag">{category}</span>
-    <span class="blogPost-year">{date}</span>
+    <span class="blogPost-year">{date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
   </div>
 
   <div class="blogPost-body">

@@ -5,7 +5,7 @@ interface Props {
   title: string;
   tag?: string;
   year?: number;
-  date?: string;
+  date?: Date;
   backHref: string;
   backLabel: string;
 }
@@ -23,15 +23,16 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
     <div class="article-meta">
   <span class="article-tag">{tag}</span>
    <span class="article-year">{year}</span>
-   <span class="article-date">{date}</span>
+   <span class="article-date">{date?.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
 </div>
     </header>
 
 
-<div class="article-media">
-  <slot name="media" />
-</div>
-
+{Astro.slots.has("media") && (
+  <div class="article-media">
+    <slot name="media" />
+  </div>
+)}
     <div class="details">
       <slot />
     </div>

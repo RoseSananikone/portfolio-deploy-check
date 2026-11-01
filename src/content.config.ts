@@ -23,7 +23,7 @@ const blogPosts = defineCollection({
     z.object({
       title: z.string(),
       category: z.string(),
-      date: z.string(),
+      date: z.coerce.date(),
       description: z.string(),
     }),
 });
