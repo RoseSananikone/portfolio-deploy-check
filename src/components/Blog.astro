@@ -1,8 +1,25 @@
 ---
+import { getCollection } from "astro:content";
 
+const blogPosts = (await getCollection("blogPosts"))
 ---
 
-<section class="Blog">
-<p>Annyeonghaseyo</p>
 
+<section class="blog" aria-labelledby="blog-heading">
+  <header class="blog-header">
+    <h2 id="blog-heading">My blog</h2>
+  </header>
+
+  <ul class="blog-list" role="list">
+    {blogPosts.map((post, index) => (
+      <li>
+        <p post={post} index={index}> {post.data.title} </p>
+      </li>
+    ))}
+  </ul>
 </section>
+
+
+
+
+
