@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import  BlogCard  from "./BlogCard.astro";
 
 const blogPosts = (await getCollection("blogPosts"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 
@@ -15,7 +16,7 @@ const blogPosts = (await getCollection("blogPosts"))
     {blogPosts.map((post, index) => (
       <li>
 
-        <BlogCard blogPost={post} index={index} />
+        <BlogCard blogPost={post} number={blogPosts.length - index} />
 
       </li>
     ))}

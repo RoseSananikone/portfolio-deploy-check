@@ -40,7 +40,6 @@ const { title, category, year, description, cover, coverAlt } = project.data;
 
 
 <style>
-  /* spacing between the image, meta row, text and link */
   .project {
     display: flex;
     flex-direction: column;
@@ -144,7 +143,6 @@ const { title, category, year, description, cover, coverAlt } = project.data;
     white-space: nowrap;
   }
 
-  /* devices with a mouse: images start out of focus and sharpen on hover */
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .project-media img {
       filter: blur(4px) saturate(0.8);

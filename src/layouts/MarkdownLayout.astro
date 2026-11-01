@@ -42,6 +42,10 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
 </BaseLayout>
 
 <style>
+  p {
+    margin-top: 0;
+  }
+
   .article {
     display: flex;
     flex-direction: column;
@@ -94,5 +98,15 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
     overflow: hidden;
     border-radius: 1rem;
   }
+
+  .details :global(p) {
+  margin-top: 0.5;
+  margin-bottom: 1rem;
+}
+
+.details :global(:is(h2, h3, h4)) {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
 
 </style>

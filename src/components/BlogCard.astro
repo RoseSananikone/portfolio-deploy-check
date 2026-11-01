@@ -3,16 +3,16 @@ import type { CollectionEntry } from "astro:content";
 
 interface Props {
   blogPost: CollectionEntry<"blogPosts">;
-  index: number;
+  number: number;
 }
 
-const { blogPost, index } = Astro.props;
+const { blogPost, number } = Astro.props;
 const { title, category, date, description} = blogPost.data;
 ---
 
 <a class="blogPost" href={`/blog/${blogPost.id}/`}>
   <div class="blogPost-meta">
-    <span class="blogPost-number">{String(index + 1).padStart(2, "0")}</span>
+    <span class="blogPost-number">{String(number).padStart(2, "0")}</span>
     <span class="blogPost-tag">{category}</span>
     <span class="blogPost-year">{date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
   </div>
