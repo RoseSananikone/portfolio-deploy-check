@@ -21,14 +21,28 @@
   </section>
 
 <style>
+
+
+  :root {
+  /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --fs--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+  --fs--1: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
+  --fs-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+  --fs-1: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
+  --fs-2: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
+  --fs-3: clamp(1.944rem, 1.771rem + 0.8651vw, 2.4414rem);
+  --fs-4: clamp(2.3328rem, 2.0827rem + 1.2504vw, 3.0518rem);
+  --fs-5: clamp(2.7994rem, 2.4462rem + 1.7658vw, 3.8147rem);
+  --fs-6: clamp(3.3592rem, 2.8691rem + 2.4507vw, 4.7684rem);
+}
+
   .hero {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: .5rem;
-    
+    gap: 0.5rem;
     text-align: center;
   }
 
@@ -36,7 +50,7 @@
     margin: 0;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(4rem, 21vw, 9rem);
+    font-size: clamp(3.5rem, 1.5rem + 13vw, 9rem);
     line-height: 0.85;
     text-transform: uppercase;
     color: var(--color-text);
@@ -80,13 +94,13 @@
   .hero-tagline {
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(1.15rem, 4.5vw, 2rem);
+     font-size: clamp(1.15rem, 1rem + 1.5vw, 2rem);
     line-height: 1.2;
   }
 
   .hero-intro {
     max-width: 45ch;
-    font-size: 0.875rem;
+    font-size: 18px;
     font-weight: 500;
   }
 
@@ -125,18 +139,14 @@
     filter: blur(0);
   }
 
-  @media screen and (min-width: 636px) {
+ @media (width >= 39.75rem) {
     .hero-title {
-      font-size: min(14vw, 12rem);
+      font-size: clamp(4rem, 1rem + 10vw, 12rem);
     }
 
     /* one line on larger screens */
     .line {
       display: inline-block;
-    }
-
-    .hero-intro {
-      font-size: 1rem;
     }
   }
 </style>
