@@ -33,13 +33,12 @@ const { title, category, year, description, cover, coverAlt } = project.data;
     <p class="project-description">{description}</p>
   </div>
 
-  <a class="project-link" href={`/work/${project.id}/`}>
+  <a class="link" href={`/work/${project.id}/`}> View project
   </a>
 </article>
 
 
 <style>
-  /* spacing between the image, meta row, text and link */
   .project {
     display: flex;
     flex-direction: column;
@@ -67,14 +66,14 @@ const { title, category, year, description, cover, coverAlt } = project.data;
     gap: 1rem;
     padding-top: 0.75rem;
     border-top: 1px solid rgb(27 23 22 / 0.15);
-    font-size: 0.75rem;
+    font-size: var(--fs--2);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
   .project-number {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: var(--fs--1);
     letter-spacing: 0;
     color: var(--color-accent);
   }
@@ -102,7 +101,7 @@ const { title, category, year, description, cover, coverAlt } = project.data;
     margin: 0;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    font-size: var(--fs-2);
     line-height: 1;
     text-transform: uppercase;
   }
@@ -110,28 +109,9 @@ const { title, category, year, description, cover, coverAlt } = project.data;
   .project-description {
     margin: 0;
     max-width: 40ch;
-    font-size: 0.9rem;
+    font-size: var(--fs--1);
     line-height: 1.5;
     opacity: 0.8;
-  }
-
-  .project-link {
-    align-self: flex-start;
-    display: inline-flex;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--color-text);
-    transition: color 0.3s ease, gap 0.3s ease;
-  }
-
-  .project-link:hover,
-  .project-link:focus-visible {
-    gap: 0.85rem;
-    color: var(--color-accent);
   }
 
   .sr-only {

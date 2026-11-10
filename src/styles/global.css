@@ -41,7 +41,6 @@ svg {
   height: auto;
 }
 
-
 body {
   margin: 0;
   width: 100%;
@@ -203,7 +202,7 @@ header nav {
   cursor: pointer;
 }
 
-.back-link {
+.link {
   align-self: flex-start;
   display: inline-flex;
   gap: 0.5rem;
@@ -213,19 +212,12 @@ header nav {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-text);
-  transition:
-    color 0.3s ease,
-    gap 0.3s ease;
+  transition: color 0.3s ease, gap 0.3s ease;
 }
 
-.back-link:hover,
-.back-link:focus-visible {
+.link:hover,
+.link:focus-visible {
   gap: 0.85rem;
   color: var(--color-accent);
-}
-
-a {
-  color: var(--color-accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
+  text-decoration: underline;
 }
