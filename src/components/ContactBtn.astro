@@ -6,6 +6,7 @@ const phone = "+32 498 31 31 31";
 <div class="contact-button-wrapper"><button class="contact-button" popovertarget="contact-popup">Contact me!</button></div>
 
 <div id="contact-popup" class="contact-popup" popover aria-labelledby="contact-heading">
+  <button class="menu-close" popovertarget="contact-popup" popovertargetaction="hide">Close</button>
   <h2 id="contact-heading">Let's talk!</h2>
   <p>Send me an email and I'll get back to you.</p>
   <ul class="contact-list">
@@ -32,7 +33,7 @@ const phone = "+32 498 31 31 31";
     text-decoration: none;
     border: none;
     font-family: Jost;
-    width: 80%;
+    width: 100%;
     font-size: var(--fs-0);
   }
 
@@ -59,12 +60,20 @@ const phone = "+32 498 31 31 31";
     padding: 0;
   }
 
-  .contact-popup {
+  h2 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.contact-popup {
   border: none;
   color: var(--color-text);
   position: fixed;
   z-index: 10;
-  height: 100dvh;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -77,7 +86,15 @@ const phone = "+32 498 31 31 31";
     transform 0.35s ease,
     visibility 0.35s,
     overlay 0.35s allow-discrete;
+    inset: 0;
+    width: fit-content;
+    height: auto;
+    max-height: calc(100dvh - 2rem);     /* never taller than the screen */
+    overflow-y: auto;                    /* scrolls inside if it's still too tall */
+    transform: translateY(100dvh);
 }
+
+
 
 .contact-popup a {
   display: block;
@@ -98,7 +115,7 @@ const phone = "+32 498 31 31 31";
 }
 
 .contact-popup:popover-open {
-  transform: translateY(50%);
+  transform: translateY(60%);
   visibility: visible;
 }
 
@@ -108,7 +125,11 @@ const phone = "+32 498 31 31 31";
   }
 
   .contact-popup {
-    inset: 10rem auto 1rem 1rem;
+    inset: auto auto 1rem 1rem;          /* bottom-left, 1rem from the edges */
+  }
+
+  .contact-popup:popover-open {
+    transform: none;
   }
 }
 
@@ -119,3 +140,4 @@ const phone = "+32 498 31 31 31";
 }
 
 </style>
+
