@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import FeaturedCard from "./FeaturedCard.astro";
 
-// Projects live in src/content/projects; set `featured: true` and `order` in each file.
 const projects = (await getCollection("projects", ({ data }) => data.featured))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
@@ -23,10 +22,6 @@ const projects = (await getCollection("projects", ({ data }) => data.featured))
 </section>
 
 <style>
-  .featured {
-    padding: 4rem 0;
-  }
-
   .featured-header {
     display: flex;
     flex-wrap: wrap;
