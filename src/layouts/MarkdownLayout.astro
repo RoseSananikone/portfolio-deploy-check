@@ -42,9 +42,9 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
 </BaseLayout>
 
 <style>
-  p {
-    margin-top: 0;
-    font-size: var(--fs-0);
+
+  .link {
+    font-size: var(--fs--1);
   }
 
   .article {
@@ -103,6 +103,15 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
   .details :global(p) {
   margin-top: 0.5;
   margin-bottom: 1rem;
+  font-size: var(--fs-0);
+}
+
+.details :global(h2) {
+font-size: var(--fs-2);
+}
+
+.details :global(h3) {
+font-size: var(--fs-1);
 }
 
 .details :global(:is(h2, h3, h4)) {
