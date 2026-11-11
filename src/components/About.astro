@@ -44,7 +44,7 @@ sizes="(min-width: 820px) 640px, (min-width: 640px) 80vw, calc(100vw - 96px)"/>
   </button>
 ))}
     </div>
-    <div>
+    <div class="about-short-introduction">
       <p>I'm Rose Sananikone, a digital design and development student in the DEVINE program in Howest. I'm always eager and excited to explore more and push the limits of my skills to further develop them and combining them with my hobbies and other experiences.</p>
       <p class="about-instruction">Click the floating buttons to see more!</p>
     </div>
@@ -83,8 +83,15 @@ sizes="(min-width: 820px) 640px, (min-width: 640px) 80vw, calc(100vw - 96px)"/>
 
  .about-me {
   display: grid;
+  justify-items: center;
   align-items: center;
   padding: 2rem;
+ }
+
+ .about-short-introduction {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
  }
 
  .about-instruction {
@@ -99,7 +106,6 @@ sizes="(min-width: 820px) 640px, (min-width: 640px) 80vw, calc(100vw - 96px)"/>
   }
 
  .about-media {
-  width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
  }
@@ -227,10 +233,13 @@ sizes="(min-width: 820px) 640px, (min-width: 640px) 80vw, calc(100vw - 96px)"/>
     color: var(--color-accent);
   }
 
-  @media screen and ( width >= 35rem) {
+  @media screen and ( width >= 68.125rem) {
     .about-me {
       display: flex;
       gap: 5rem;
+    }
+    .about-short-introduction{
+      text-align: start;
     }
   }
 
