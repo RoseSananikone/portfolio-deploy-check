@@ -29,7 +29,7 @@ const isActive = (href:any) =>
   </nav>
 ) : (
   <div id="main-menu" class="nav-links" popover>
-    <button class="menu-close" popovertarget="main-menu" popovertargetaction="hide">Close</button>
+    <button class="close" popovertarget="main-menu" popovertargetaction="hide">Close</button>
     {links.map((link) => (
       <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
         {link.label}
@@ -39,7 +39,6 @@ const isActive = (href:any) =>
 )}
 
 <style>
-  /* phone: the header menu is enough, so the footer links are hidden */
   .footer-nav {
     display: none;
   }

@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro'
-import Featured from '../components/Featured.astro'
+import ProjectList from '../components/ProjectList.astro'
 import Skills from '../components/Skills.astro'
 const pageTitle = "Rose Sananikone";
 ---
 <BaseLayout pageTitle={pageTitle}>
 <Hero />
-<Featured />
+<ProjectList heading="Featured projects" featuredOnly limit={3} />
 <Skills />
 </BaseLayout>
 
