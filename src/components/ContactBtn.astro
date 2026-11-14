@@ -3,9 +3,10 @@ const email = "rose16.sananikone@gmail.com";
 const phone = "+32 498 31 31 31";
 ---
 
-<button class="contact-button" popovertarget="contact-popup">Contact me!</button>
+<div class="contact-button-wrapper"><button class="contact-button" popovertarget="contact-popup">Contact me!</button></div>
 
 <div id="contact-popup" class="contact-popup" popover aria-labelledby="contact-heading">
+  <button class="menu-close" popovertarget="contact-popup" popovertargetaction="hide">Close</button>
   <h2 id="contact-heading">Let's talk!</h2>
   <p>Send me an email and I'll get back to you.</p>
   <ul class="contact-list">
@@ -17,44 +18,83 @@ const phone = "+32 498 31 31 31";
 
 <style>
 
+  .contact-button-wrapper {
+    text-align: center;
+  }
+
     .contact-button {
-      position: relative;
-      isolation: isolate;
-      padding: 0.9rem 2.5rem;
-      border-radius: 999px;
-      background-color: var(--color-accent);
-      color: var(--color-bg);
-      font-weight: 500;
-      text-decoration: none;
-      border-style: none;
-      margin: 0 2rem 2rem 2rem;
-    }
+    position: relative;
+    isolation: isolate;
+    padding: 0.9rem 2.5rem;
+    border-radius: 999px;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    font-family: Jost;
+    width: 100%;
+    font-size: var(--fs-0);
+  }
+
+  .contact-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: var(--color-accent);
+    filter: blur(6px);
+    transform: translate(0.75rem, -0.25rem);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .contact-button:hover::before,
+  .contact-button:focus-visible::before {
+    transform: none;
+    filter: blur(0);
+  }
 
   ul {
     list-style-type: none;
     padding: 0;
   }
 
-  .contact-popup {
+  h2 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.contact-popup {
   border: none;
   color: var(--color-text);
   position: fixed;
   z-index: 10;
-  height: 100dvh;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
   background-color: var(--color-bg);
   border: 1.5px solid var(--color-accent);
-  box-shadow: -1rem 0 2rem rgb(27 23 22 / 0.08);
+  box-shadow:  0 0 3.4em gray;
   transform: translateY(100%);
-  visibility: hidden;
   transition:
     transform 0.35s ease,
     visibility 0.35s,
     overlay 0.35s allow-discrete;
+    inset: 0;
+    width: fit-content;
+    height: auto;
+    max-height: calc(100dvh - 2rem);     /* never taller than the screen */
+    overflow-y: auto;                    /* scrolls inside if it's still too tall */
+    transform: translateY(100dvh);
 }
+
+
 
 .contact-popup a {
   display: block;
@@ -75,8 +115,29 @@ const phone = "+32 498 31 31 31";
 }
 
 .contact-popup:popover-open {
-  transform: translateY(50%);
+  transform: translateY(60%);
   visibility: visible;
 }
 
+@media screen and (width >= 39.75rem) {
+  .contact-button {
+    width: auto;
+  }
+
+  .contact-popup {
+    inset: auto auto 1rem 1rem;          /* bottom-left, 1rem from the edges */
+  }
+
+  .contact-popup:popover-open {
+    transform: none;
+  }
+}
+
+@media (39.75rem <= width < 62.5rem) {
+  .contact-button-wrapper {
+  padding-left: clamp(0rem, 54.945rem - 87.912vw, 20rem);
+  }
+}
+
 </style>
+

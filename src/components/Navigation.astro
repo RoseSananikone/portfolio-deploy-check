@@ -1,4 +1,11 @@
 ---
+interface Props {
+  inFooter?: boolean;
+}
+
+// <Navigation inFooter /> renders a plain row of links (no popover, no id),
+// so only the header owns #main-menu.
+const { inFooter = false } = Astro.props;
 const path = Astro.url.pathname;
 
 const links = [
@@ -12,11 +19,55 @@ const links = [
 const isActive = (href:any) =>
   href === "/" ? path === "/" : path.startsWith(href);
 ---
-<div id="main-menu" class="nav-links" popover>
-  <button class="menu-close" popovertarget="main-menu" popovertargetaction="hide">Close</button>
-  {links.map((link) => (
-    <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
-      {link.label}
-    </a>
-  ))}
-</div>
+{inFooter ? (
+  <nav class="footer-nav" aria-label="Footer">
+    {links.map((link) => (
+      <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
+        {link.label}
+      </a>
+    ))}
+  </nav>
+) : (
+  <div id="main-menu" class="nav-links" popover>
+    <button class="close" popovertarget="main-menu" popovertargetaction="hide">Close</button>
+    {links.map((link) => (
+      <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
+        {link.label}
+      </a>
+    ))}
+  </div>
+)}
+
+<style>
+  /* phone: the header menu is enough, so the footer links are hidden */
+  .footer-nav {
+    display: none;
+  }
+
+  .footer-nav a {
+    font-family: var(--font-display);
+    font-size: var(--fs-1);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .footer-nav a[aria-current="page"],
+  .footer-nav a:hover,
+  .footer-nav a:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    color: var(--color-accent);
+  }
+
+  /* same breakpoint where the header switches from drawer to row */
+  @media (width >= 39.75rem) {
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem clamp(1.5rem, 6vw, 5rem);
+    }
+  }
+</style>

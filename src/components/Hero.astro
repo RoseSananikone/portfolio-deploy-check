@@ -3,68 +3,80 @@
 ---
 
   <section class="hero">
-    <h1 class="hero-title">
-      <span class="line" data-text="Rose"><span class="sharp">Rose</span></span>
-      <span class="line" data-text="Sananikone"><span class="sharp">Sananikone</span></span>
-    </h1>
+<h1 class="hero-title" data-text="Rose Sananikone">
+  <span class="sharp">Rose Sananikone</span>
+</h1>
 
     <div class="hero-text">
-      <p class="hero-tagline">A creative designer searching for more</p>
+      <p class="hero-tagline">Life happens wherever you are, whether you make it or not.</p>
       <p class="hero-intro">
-        Placeholder: a sentence or two about who you are, what you make and
-        what you're looking for next.
+        A young creative designer who wants to experiment and try out new things with clear intentions and unique character.
       </p>
-      <p class="hero-note">Placeholder: location · open to work</p>
+      <p class="hero-note">Based in Belgium  · open to work</p>
     </div>
 
     <a class="hero-button" href="/work/">View work</a>
   </section>
 
 <style>
+
+  :root {
+  --fs-display-stacked: clamp(3.5rem, 1.5rem + 13vw, 4rem);
+  --fs-display-inline: clamp(4rem, 1rem + 10vw, 12rem);
+  --fs-tagline: clamp(1.25rem, 1.0054rem + 1.2228vw, 1.9531rem);
+  }
+
   .hero {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: .5rem;
-    padding: 3rem 0;
+    gap: 0.5rem;
     text-align: center;
-    padding-top: 5rem;
+    padding-top: 4rem;
   }
 
+
   .hero-title {
+  --band-top: 42%;
+  --band-bottom: 68%;
+    position: relative;
+    width: min-content;
     margin: 0;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(4rem, 21vw, 9rem);
+    font-size: var(--fs-display-stacked);
     line-height: 0.85;
     text-transform: uppercase;
     color: var(--color-text);
   }
 
-  /* each word is its own line on phone */
-  .line {
-    position: relative;
-    display: block;
-  }
-
   /* hide the sharp letters where the blur band sits */
-  .sharp {
-    display: block;
-    mask-image: linear-gradient(to bottom, #000 42%, transparent 42%, transparent 68%, #000 68%);
-  }
+.sharp {
+  display: block;
+  mask-image: linear-gradient(to bottom,
+    #000 var(--band-top), transparent var(--band-top),
+    transparent var(--band-bottom), #000 var(--band-bottom));
+  mask-size: 100% 1lh;               /* one mask per line… */
+  mask-repeat: repeat-y;             /* …repeated down every line */
+}
 
-  /* blurred copy of the word, clipped to a horizontal band */
-  .line::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    color: rgb(27 23 22 / 0.8);
-    filter: blur(3px);
-    clip-path: inset(42% -1rem 32% -1rem);
-    pointer-events: none;
-  }
+.hero-title::after {
+  content: attr(data-text);
+  content: attr(data-text) / "";     /* screen readers skip the copy */
+  position: absolute;
+  inset: 0 -1rem;                    /* wider box so the blur isn't cut off at the sides… */
+  padding-inline: 1rem;              /* …while the text inside wraps exactly like .sharp */
+  opacity: 0.8;
+  filter: blur(3px);
+  mask-image: linear-gradient(to bottom,
+    transparent var(--band-top), #000 var(--band-top),
+    #000 var(--band-bottom), transparent var(--band-bottom));
+  mask-size: 100% 1lh;
+  mask-repeat: repeat-y;
+  pointer-events: none;
+}
 
   .hero-text {
     display: flex;
@@ -81,18 +93,19 @@
   .hero-tagline {
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(1.15rem, 4.5vw, 2rem);
+     font-size: var(--fs-tagline);
     line-height: 1.2;
+    text-wrap: balance;
   }
 
   .hero-intro {
     max-width: 45ch;
-    font-size: 0.875rem;
+    font-size: var(--fs--1);
     font-weight: 500;
   }
 
   .hero-note {
-    font-size: 0.8rem;
+    font-size: var(--fs--1);
     color: var(--color-accent);
   }
 
@@ -126,18 +139,15 @@
     filter: blur(0);
   }
 
-  @media screen and (min-width: 636px) {
-    .hero-title {
-      font-size: min(14vw, 12rem);
-    }
-
+ @media (width >= 30rem) {
     /* one line on larger screens */
-    .line {
-      display: inline-block;
+    .hero-title {
+      width: auto;
+      font-size: var(--fs-display-inline);
     }
 
-    .hero-intro {
-      font-size: 1rem;
+    .hero-tagline {
+      width: auto;
     }
   }
 </style>

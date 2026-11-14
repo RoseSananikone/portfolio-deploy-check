@@ -22,7 +22,7 @@ const { title, category, date, description} = blogPost.data;
     <p class="blogPost-description">{description}</p>
   </div>
 
-  <span class="blogPost-link">Read full blog →</span>
+  <span class="link">Read full blog →</span>
 </a>
 
 <style>
@@ -95,20 +95,5 @@ const { title, category, date, description} = blogPost.data;
     font-size: 0.9rem;
     line-height: 1.5;
     opacity: 0.8;
-  }
-
-  .blogPost-link {
-    display: inline-flex;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-  }
-
-  .blogPost:hover .blogPost-link,
-  .blogPost:focus-visible .blogPost-link {
-    color: var(--color-accent);
   }
 </style>
