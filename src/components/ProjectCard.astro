@@ -16,8 +16,8 @@ const { title, category, year, description, cover, coverAlt } = project.data;
     <Image
       src={cover}
       alt={coverAlt}
-      widths={[400, 800, 1200]}
-      sizes="(min-width: 1000px) 33vw, (min-width: 636px) 50vw, 100vw"
+      widths={[578, 834, 1170, 1420, 1640, 1830]}
+      sizes="(min-width: 1000px) calc(35.3vw - 92px), (min-width: 640px) calc(52.65vw - 97px), calc(106.25vw - 88px)"
       loading={index === 0 ? "eager" : "lazy"}
     />
   </a>

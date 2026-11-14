@@ -3,8 +3,8 @@ title: Escape Room
 category: Creative Code
 year: 2026
 description: "A 15-minute browser escape room built with vanilla JavaScript, where you play as a pigeon spy solving puzzles to escape the lair of the evil Dr. Fox."
-cover: ../img/escaperoom.png
-coverAlt: Screenshot of the escape room showing [e.g. Dr. Fox's lair with the countdown timer and Agent C]
+cover: ../img/escaperoom.avif
+coverAlt: Dark blue and neon interface of home page of escape room, agent c crow on the left with his text underneath and the different ui rooms displayed at the top middle.
 featured: true
 order: 1
 ---

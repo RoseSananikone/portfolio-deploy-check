@@ -3,7 +3,7 @@ title: Fact Check
 category: Interactive Web Design and Storytelling
 year: 2026
 description: "A scrollytelling one-pager that debunks the myth that gladiators always fought to the death, told through the eyes of a mysterious narrator who turns out to be the ghost of a Roman emperor."
-cover: ../img/factcheck.png
+cover: ../img/factcheck.avif
 coverAlt: Hero section of the Fact Check website, showing [describe your illustration, e.g. a gladiator in the arena under the shadow of a looming figure]
 featured: true
 order: 2
