@@ -21,13 +21,13 @@ const categories = await getCollection("skills");
     gap: 1.5rem;
   }
 
-  @media screen and (min-width: 636px) {
+  @media screen and (width >= 39.75rem) {
     .skills-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media screen and (min-width: 1000px) {
+  @media screen and (width >= 62.5rem) {
     .skills-grid {
       grid-template-columns: repeat(3, 1fr);
     }
