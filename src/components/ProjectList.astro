@@ -62,14 +62,14 @@ const projects = (await getCollection("projects", ({ data }) =>
     list-style: none;
   }
 
-  @media screen and (min-width: 636px) {
+  @media screen and (width >= 39.75rem) {
     .project-list {
       grid-template-columns: repeat(2, 1fr);
       gap: 3rem 1.5rem;
     }
   }
 
-  @media screen and (min-width: 1000px) {
+  @media screen and (width >= 62.5rem) {
     .project-list {
       grid-template-columns: repeat(3, 1fr);
     }
