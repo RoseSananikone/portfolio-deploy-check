@@ -1,28 +1,39 @@
 ---
 import { getCollection } from "astro:content";
-import FeaturedCard from "./FeaturedCard.astro";
+import ProjectCard from "./ProjectCard.astro";
 
-const projects = (await getCollection("projects", ({ data }) => data.featured))
+interface Props {
+  heading: string;
+  featuredOnly?: boolean;
+  limit?: number;
+}
+
+const { heading, featuredOnly = false, limit } = Astro.props;
+
+const projects = (await getCollection("projects", ({ data }) =>
+  featuredOnly ? data.featured : true
+))
   .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3);
+  .slice(0, limit); // slice(0, undefined) returns everything
 ---
 
-<section class="featured" aria-labelledby="featured-heading">
-  <header class="featured-header">
-    <h2 id="featured-heading">Featured projects</h2>
+<section class="projects" aria-labelledby="projects-heading">
+  <header class="projects-header">
+    <h2 id="projects-heading">{heading}</h2>
   </header>
 
   <ol class="project-list" role="list">
     {projects.map((project, index) => (
       <li>
-        <FeaturedCard project={project} index={index} />
+        <ProjectCard project={project} index={index} />
       </li>
     ))}
   </ol>
 </section>
 
+
 <style>
-  .featured-header {
+  .projects-header {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -33,7 +44,7 @@ const projects = (await getCollection("projects", ({ data }) => data.featured))
     padding-bottom: 0.75rem;
   }
 
-  .featured-header h2 {
+  .projects-header h2 {
     margin: 0;
     font-family: var(--font-display);
     font-weight: 400;
@@ -51,14 +62,14 @@ const projects = (await getCollection("projects", ({ data }) => data.featured))
     list-style: none;
   }
 
-  @media screen and (min-width: 636px) {
+  @media screen and (width >= 39.75rem) {
     .project-list {
       grid-template-columns: repeat(2, 1fr);
       gap: 3rem 1.5rem;
     }
   }
 
-  @media screen and (min-width: 1000px) {
+  @media screen and (width >= 62.5rem) {
     .project-list {
       grid-template-columns: repeat(3, 1fr);
     }

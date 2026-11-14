@@ -26,17 +26,10 @@ const popups = [
   </div>
   <article class="about-me">
     <div class="about-photo">
-<Image class="about-media" src={rose} format="avif" loading="eager" alt="lightly pixelated and blurry red open petal rose" width="1906" height="1997"
-srcset="
-/src/content/img/rose-256.avif 256w,
-/src/content/img/rose-640.avif 640w,
-/src/content/img/rose-792.avif 792w,
-/src/content/img/rose-1060.avif 1060w,
-/src/content/img/rose-1280.avif 1280w,
-/src/content/img/rose-1520.avif 1520w,
-/src/content/img/rose-1730.avif 1730w,
-/src/content/img/rose-1920.avif 1920w"
-sizes="(min-width: 820px) 640px, (min-width: 640px) 80vw, calc(100vw - 96px)"/>
+<Image class="about-media" src={rose} format="avif" loading="eager"
+  alt="lightly pixelated and blurry red open petal rose"
+  widths={[256, 640, 792, 1060, 1280, 1520, 1730, 1920]}
+  sizes="(min-width: 820px) 640px, (min-width: 640px) 80vw, calc(100vw - 96px)" />
 
 {popups.map((popup) => (
   <button class={`float-button float-${popup.id}`} popovertarget={`${popup.id}-popup`}>
@@ -83,6 +76,7 @@ sizes="(min-width: 820px) 640px, (min-width: 640px) 80vw, calc(100vw - 96px)"/>
 
  .about-me {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   align-items: center;
   padding: 2rem;

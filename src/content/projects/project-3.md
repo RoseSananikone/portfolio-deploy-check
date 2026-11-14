@@ -3,7 +3,7 @@ title: Bokeh Identity
 category: UI/UX Design · Interactive Form
 year: 2026
 description: "Branding and an interactive booking form for a fictional workshop about letting go of the question 'Where are you really from?', designed for people of mixed heritage."
-cover: ../img/workshop.png
+cover: ../img/workshop.avif
 coverAlt: Screen from the Bokeh Identity booking form showing [e.g. soft-focus watercolor flowers behind the first question]
 featured: true
 order: 3

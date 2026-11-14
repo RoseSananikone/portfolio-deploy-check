@@ -25,9 +25,6 @@ const blogPosts = (await getCollection("blogPosts"))
 
 
 <style>
-  .blog {
-    padding: 4rem 0;
-  }
 
   .blog-header {
     display: flex;
@@ -44,7 +41,7 @@ const blogPosts = (await getCollection("blogPosts"))
     margin: 0;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(2.75rem, 12vw, 6rem);
+    font-size: var(--fs-5);
     line-height: 0.9;
     text-transform: uppercase;
   }
@@ -58,14 +55,14 @@ const blogPosts = (await getCollection("blogPosts"))
     list-style: none;
   }
 
-  @media screen and (min-width: 636px) {
+  @media screen and (width >= 62.5rem) {
     .blog-list {
       grid-template-columns: repeat(2, 1fr);
       gap: 3rem 1.5rem;
     }
   }
 
-  @media screen and (min-width: 1000px) {
+  @media screen and (width >= 62.5rem) {
     .blog-list {
       grid-template-columns: repeat(3, 1fr);
     }

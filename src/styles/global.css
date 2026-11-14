@@ -183,7 +183,7 @@ header nav {
   }
 
   .menu,
-  .close {
+  .close, .menu-close {
     display: none;
   }
 }

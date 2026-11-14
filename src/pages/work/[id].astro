@@ -23,7 +23,7 @@ const { Content } = await render(project);
     src={cover}
     alt={coverAlt}
     widths={[400, 800, 1600]}
-    sizes="(min-width: 48rem) 48rem, 100vw"
+    sizes="(min-width: 900px) 768px, (min-width: 640px) calc(80vw + 64px), calc(100vw - 32px)"
     loading="eager"
   />
   <Content />

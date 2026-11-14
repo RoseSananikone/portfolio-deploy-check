@@ -3,7 +3,7 @@ title: Let's Dance
 category: Creative Code
 year: 2026
 description: "Short description of the project: what it was about and what kind of project it is."
-cover: ../img/placeholder.jpg
+cover: ../img/placeholder.avif
 coverAlt: Describe what the image shows
 featured: false
 order: 4

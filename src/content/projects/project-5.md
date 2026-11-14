@@ -3,7 +3,7 @@ title: Integration 2
 category: Editorial
 year: 2026
 description: "Short description of the project: what it was about and what kind of project it is."
-cover: ../img/placeholder.jpg
+cover: ../img/placeholder.avif
 coverAlt: Describe what the image shows
 featured: false
 order: 5

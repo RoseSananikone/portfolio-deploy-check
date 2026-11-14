@@ -15,7 +15,7 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
 
 <BaseLayout pageTitle={title}>
   <article class="article">
-    <a class="back-link" href={backHref}>← {backLabel}</a>
+    <a class="link" href={backHref}>← {backLabel}</a>
 
     <header class="article-header">
       <h1 class="article-title">{title}</h1>
@@ -37,13 +37,14 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
       <slot />
     </div>
 
-    <a class="back-link" href={backHref}>← {backLabel}</a>
+    <a class="link" href={backHref}>← {backLabel}</a>
   </article>
 </BaseLayout>
 
 <style>
-  p {
-    margin-top: 0;
+
+  .link {
+    font-size: var(--fs--1);
   }
 
   .article {
@@ -53,7 +54,7 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
     width: 100%;
     max-width: 48rem;
     margin-inline: auto;
-    padding-block: 2rem 4rem;
+    padding-block: 0rem 4rem;
   }
 
   .article-header {
@@ -66,7 +67,7 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
     margin: 0;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(2.75rem, 12vw, 6rem);
+    font-size: var(--fs-5);
     line-height: 0.9;
     text-transform: uppercase;
   }
@@ -77,7 +78,7 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
     gap: 1rem;
     padding-top: 0.75rem;
     border-top: 1px solid rgb(27 23 22 / 0.15);
-    font-size: 0.75rem;
+    font-size: var(--fs--2);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -102,6 +103,15 @@ const { title, tag, year, date, backHref, backLabel } = Astro.props;
   .details :global(p) {
   margin-top: 0.5;
   margin-bottom: 1rem;
+  font-size: var(--fs-0);
+}
+
+.details :global(h2) {
+font-size: var(--fs-2);
+}
+
+.details :global(h3) {
+font-size: var(--fs-1);
 }
 
 .details :global(:is(h2, h3, h4)) {
