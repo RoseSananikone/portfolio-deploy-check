@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import rose from "../content/img/rose.png";
+import rose from "../content/img/rose.avif"
 import Skills from '../components/Skills.astro'
 
 const popups = [
@@ -26,7 +26,17 @@ const popups = [
   </div>
   <article class="about-me">
     <div class="about-photo">
-<Image class="about-media" src={rose} width={960} loading="eager" alt="..." />
+<Image class="about-media" src={rose} format="avif" loading="eager" alt="lightly pixelated and blurry red open petal rose" width="1906" height="1997"
+srcset="
+/src/content/img/rose-256.avif 256w,
+/src/content/img/rose-640.avif 640w,
+/src/content/img/rose-792.avif 792w,
+/src/content/img/rose-1060.avif 1060w,
+/src/content/img/rose-1280.avif 1280w,
+/src/content/img/rose-1520.avif 1520w,
+/src/content/img/rose-1730.avif 1730w,
+/src/content/img/rose-1920.avif 1920w"
+sizes="(min-width: 820px) 640px, (min-width: 640px) 80vw, calc(100vw - 96px)"/>
 
 {popups.map((popup) => (
   <button class={`float-button float-${popup.id}`} popovertarget={`${popup.id}-popup`}>
@@ -34,13 +44,15 @@ const popups = [
   </button>
 ))}
     </div>
-    <p>I'm Rose Sananikone, a digital design and development student in the DEVINE program in Howest. I'm always eager and excited to explore more and push the limits of my skills to further develop them and combining them with my hobbies and other experiences.</p>
+    <div class="about-short-introduction">
+      <p>I'm Rose Sananikone, a digital design and development student in the DEVINE program in Howest. I'm always eager and excited to explore more and push the limits of my skills to further develop them and combining them with my hobbies and other experiences.</p>
+      <p class="about-instruction">Click the floating buttons to see more!</p>
+    </div>
   </article>
 
-    <Skills />
 
   {popups.map((popup) => (
-  <div id={`${popup.id}-popup`} class="popup" popover>
+    <div id={`${popup.id}-popup`} class="popup" popover>
     <button class="popup-close" popovertarget={`${popup.id}-popup`} popovertargetaction="hide">Close</button>
     <h2>{popup.title}</h2>
     <ul>
@@ -51,6 +63,7 @@ const popups = [
 ))}
 
 </section>
+<Skills />
 
 <style>
 
@@ -70,8 +83,19 @@ const popups = [
 
  .about-me {
   display: grid;
+  justify-items: center;
   align-items: center;
   padding: 2rem;
+ }
+
+ .about-short-introduction {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+ }
+
+ .about-instruction {
+  font-size: var(--fs--2);
  }
 
   /* the buttons are positioned relative to this wrapper */
@@ -82,7 +106,6 @@ const popups = [
   }
 
  .about-media {
-  width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
  }
@@ -96,7 +119,7 @@ const popups = [
     background-color: var(--color-bg);
     box-shadow: 0 0.75rem 2rem rgb(27 23 22 / 0.18);
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: var(--fs-1);
     text-transform: uppercase;
     color: var(--color-text);
     cursor: pointer;
@@ -138,7 +161,7 @@ const popups = [
 
   /* card that slides up from below when it opens */
   .popup {
-    width: min(90vw, 60rem);
+    width: min(90vw, 30rem);
     max-height: 85dvh;
     overflow-y: auto;
     padding: 2rem;
@@ -199,7 +222,7 @@ const popups = [
     background: none;
     border: none;
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: var(--fs-0);
     text-transform: uppercase;
     color: var(--color-text);
     cursor: pointer;
@@ -208,6 +231,16 @@ const popups = [
   .popup-close:hover,
   .popup-close:focus-visible {
     color: var(--color-accent);
+  }
+
+  @media screen and ( width >= 68.125rem) {
+    .about-me {
+      display: flex;
+      gap: 5rem;
+    }
+    .about-short-introduction{
+      text-align: start;
+    }
   }
 
 </style>
