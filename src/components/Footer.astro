@@ -1,10 +1,11 @@
 ---
+import { withBase } from "../utils/withBase.js";
 import Navigation from '../components/Navigation.astro'
 import Social from '../components/Social.astro'
 ---
 
 <footer class="footer">
-  <a class="logo" href="/">Rose<br />Sananikone</a>
+  <a class="logo" href={withBase("/")}>Rose<br />Sananikone</a>
   <Navigation inFooter />
   <div class="social-links">
     <Social platform="linkedin" username="astrodotbuild" />

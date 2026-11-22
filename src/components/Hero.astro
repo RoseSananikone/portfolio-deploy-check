@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../utils/withBase.js";
 
 ---
 
@@ -15,7 +16,7 @@
       <p class="hero-note">Based in Belgium  · open to work</p>
     </div>
 
-    <a class="hero-button" href="/work/">View work</a>
+    <a class="hero-button" href={withBase("/work/")}>View work</a>
   </section>
 
 <style>

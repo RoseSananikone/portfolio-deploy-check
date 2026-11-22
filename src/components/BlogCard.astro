@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../utils/withBase.js";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -10,7 +11,7 @@ const { blogPost, number } = Astro.props;
 const { title, category, date, description} = blogPost.data;
 ---
 
-<a class="blogPost" href={`/blog/${blogPost.id}/`}>
+<a class="blogPost" href={withBase(`/blog/${blogPost.id}/`)}>
   <div class="blogPost-meta">
     <span class="blogPost-number">{String(number).padStart(2, "0")}</span>
     <span class="blogPost-tag">{category}</span>
