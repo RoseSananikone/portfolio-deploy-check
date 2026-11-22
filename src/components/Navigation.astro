@@ -8,10 +8,7 @@ interface Props {
 const { inFooter = false } = Astro.props;
 const path = Astro.url.pathname;
 
-// BASE_URL is "/portfolio/" on GitHub Pages (from `base` in astro.config.mjs).
-// Normalise it to always end in "/" so we can just append the page path.
-const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-const withBase = (href) => base + href.replace(/^\//, "");
+import { base, withBase } from "../utils/url.js";
 
 const links = [
   { href: withBase("/"), label: "Home" },
